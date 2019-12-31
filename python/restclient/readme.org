@@ -1,0 +1,66 @@
+#+TITLE: 简易 REST 客户端
+#+AUTHOR: zhcosin
+#+DATE: 2019-11-08
+#+OPTIONS:   ^:{} \n:t 
+#+LANGUAGE: zh-CN
+
+* 简介 
+
+这是一个用 =python= 实现的简易 =REST API= 客户端，通过一个 =json= 格式的配置文件，将服务器中的所有 =REST API= 按层次结构组织起来，然后 =python= 程序可以显示接口清单，显示接口详细内容，执行某个接口请求.
+源文件 =restclient.py= 是测试工具, =config.json= 是配置文件.
+
+* 配置
+
+配置文件中，最顶层配置项目相关信息，包含项目根 =url= 路径，然后所有的 =API= 请求被组织在 =rest-api= 节点下，可以有树形层次结构，以方便实现 =url= 的层次结构，每个 =API= 请求需要配置其简称(=name=)、描述、 =HTTP= 方法、 =url= 、参数或者请求体等。
+
+* 用法
+  
+通用用法是
+#+BEGIN_SRC shell
+python -u restclient.py <file> <cmd> <api路径...>
+#+END_SRC
+其中 =file= 是配置文件名称（必须与 =restclient.py= 位于同一目录）, =cmd= 是要执行的命令，目前有 =ls=, =show=, =call= 三种命令, =api= 路径是 =api= 在层次结构中按简称(=name=)的路径，各级路径之间直接用空格分隔为多个参数即可.
+
+1. 列出指定配置文件中的全部接口名称及其描述
+#+BEGIN_SRC shell
+python -u restclient.py config.json ls
+#+END_SRC
+显示
+#+BEGIN_EXAMPLE
+book-manage                                             书目管理
+    find-book                                           查询书目
+    add-bok                                             图书入库
+br                                                      图书借还
+    borrow                                              图书借出
+    return                                              图书归还
+#+END_EXAMPLE
+
+2. 显示指定配置文件中，指定 =API= 的信息， =API= 的指定方式是根据上面的清单指定其路径
+#+BEGIN_SRC shell
+python -u restclient.py config.json show br borrow
+#+END_SRC
+输出
+#+BEGIN_EXAMPLE
+will load api from file: D:\hengyang\code\restclient/config.json
+api found.
+url: http://127.0.0.1:8080/br/borrow
+{'name': 'borrow', 'description': '图书借出', 'method': 'POST', 'url': '/borrow', 'body': {'bookname': '微积分学教程', 'author': '菲赫金哥尔茨', 'publisher': '高等教育出版社', 'borrower': '借阅者,刘德华', 'time-limit': '15天'}}
+#+END_EXAMPLE
+
+3. 执行指定的 =API= 请求，指定方式是指定其路径
+#+BEGIN_SRC shell
+python -u restclient.py config.json call br borrow
+#+END_SRC
+输出
+#+BEGIN_EXAMPLE
+will load api from file: D:\hengyang\code\restclient/config.json
+POST http://127.0.0.1:8080/br/borrow
+headers: {'content-type': 'application/json'}
+body:
+{'bookname': '微积分学教程', 'author': '菲赫金哥尔茨', 'publisher': '高等教育出版社', 'borrower': '借阅者,刘德华', 'time-limit': '15天'}
+
+status_code: 404
+response body:
+{"timestamp":1573213511647,"status":404,"error":"Not Found","message":"No message available","path":"/br/borrow"}
+#+END_EXAMPLE
+

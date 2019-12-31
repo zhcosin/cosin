@@ -1,0 +1,26 @@
+{
+    "datasource": "user/password@127.0.0.1:3306/dbname",
+    "db-product": "oracle",
+    "infos": [
+	{
+	    "tableName": "APP_INFO",
+	    "baseField": "UPDATE_TIME",
+	    "updatedFields": ["CREATE_TIME", "UPDATE_TIME"]
+	},
+	{
+	    "tableName": "T_OMS_EW_LOAD",
+	    "baseField": "HAPPENDATE",
+	    "updatedFields": ["HAPPENDATE"]
+	},
+	{
+	    "tableName": "T_OMS_EW_OVERLOAD",
+	    "baseField": "OVERLOADFINISHDATE",
+	    "updatedFields": ["OVERLOADHAPPENDATE", "OVERLOADFINISHDATE"]
+	},
+	{
+	    "tableName": "T_PMS_EW_DEFECT_RECORD",
+	    "baseField": "FINDDATE",
+	    "updatedFields": ["FINDDATE", "REMOVEDATE"]
+	}
+    ]
+}

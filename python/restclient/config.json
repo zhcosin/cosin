@@ -1,0 +1,73 @@
+{
+    "name": "book-library-manage-system",
+    "description": "图书馆图书借阅管理系统",
+    "base-url": "http://127.0.0.1:8080",
+    "rest-api": [
+	{
+	    "name": "book-manage",
+	    "description": "书目管理",
+	    "url": "/book",
+	    "children": [],
+	    "api": [
+		{
+		    "name": "find-book",
+		    "description": "查询书目",
+		    "method": "GET",
+		    "url": "/find",
+		    "params": {
+			"bookname": "微积分学教程",
+			"author": "菲赫金哥尔茨",
+			"publisher": "高等教育出版社"
+		    }
+		},
+		{
+		    "name": "add-bok",
+		    "description": "图书入库",
+		    "method": "POST",
+		    "url": "/add",
+		    "body": {
+			"bookname": "微积分学教程",
+			"author": "菲赫金哥尔茨",
+			"publisher": "高等教育出版社",
+			"room": "三楼-306室",
+			"shelves": "科技-数学-微积分"
+		    }
+		}
+	    ]
+	},
+	{
+	    "name": "br",
+	    "description": "图书借还",
+	    "url": "/br",
+	    "children": [],
+	    "api": [
+		{
+		    "name": "borrow",
+		    "description": "图书借出",
+		    "method": "POST",
+		    "url": "/borrow",
+		    "body": {
+			"bookname": "微积分学教程",
+			"author": "菲赫金哥尔茨",
+			"publisher": "高等教育出版社",
+			"borrower": "借阅者,刘德华",
+			"time-limit": "15天"
+		    }
+		},
+		{
+		    "name": "return",
+		    "description": "图书归还",
+		    "method": "POST",
+		    "url": "/return",
+		    "body": {
+			"bookname": "微积分学教程",
+			"author": "菲赫金哥尔茨",
+			"publisher": "高等教育出版社",
+			"borrower": "借阅者,刘德华",
+			"istimeout": "否"
+		    }
+		}
+	    ]
+	}
+    ]
+}

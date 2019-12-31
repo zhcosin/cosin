@@ -1,0 +1,35 @@
+
+#+HTML_HEAD:
+#+TITLE: 个人代码仓库
+#+AUTHOR: zhcosin
+#+DATE:
+#+OPTIONS:   ^:{} \n:t 
+#+LANGUAGE: zh-CN
+
+* 简介
+  
+我的个人代码仓库
+
+代码列表:
+
+c/c++
+
+ - 环形缓冲区
+ - 利用环形缓冲区实现的数据发送/接收适配器.
+ - 一个非常轻量级的日志框架.
+ - 定时器
+ - 日常小工具类
+ - 用 C 实现的 XML 微型解析器
+
+java
+
+ - 道格拉斯-普克 抽稀算法.
+ - 简单的 SQL 操作，根据元数据自动化组建 sql 语句并执行.
+ - 反复尝试某项工作，直到工作成功/失败/超时为止的执行器.
+
+python
+
+ - [[file:code/python/restclient/readme.org][REST 客户端]]
+ - [[file:code/python/update-date-in-db/readme.org][自动更新数据库时间字段的 python 小工具]]
+
+elisp
