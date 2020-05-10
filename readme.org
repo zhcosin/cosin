@@ -31,5 +31,6 @@ python
 
  - [[file:python/restclient/readme.org][REST 客户端]]
  - [[file:python/update-date-in-db/readme.org][自动更新数据库时间字段的 python 小工具]]
+ - 简易的 lisp 解释器
 
 elisp
